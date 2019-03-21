@@ -1,5 +1,7 @@
 package com.yuboz.springbootapi.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,14 +9,19 @@ import javax.persistence.Id;
 @Entity
 public class Book {
 
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String author;
     private String description;
     private int status;
 
-    @Id
-    @GeneratedValue
+    public Book(){
+
+    }
+
+
     public Long getId() {
         return id;
     }

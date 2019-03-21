@@ -2,13 +2,21 @@ package com.yuboz.springbootapi.dto;
 
 import com.yuboz.springbootapi.domain.Book;
 import com.yuboz.springbootapi.util.CustomBeanUtils;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.BeanUtils;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class BookDTO {
 
+    @NotBlank
     private String name;
+    @NotBlank
     private String author;
+    @NotBlank
     private String description;
+    @NotNull
     private int status;
 
     public BookDTO() {
@@ -46,6 +54,10 @@ public class BookDTO {
         this.status = status;
     }
 
+    public Book convertToBook(){
+        return new BookConvert().convert(this);
+    }
+
     public void convertToBook(Book book){
         new BookConvert().convert(this,book);
     }
@@ -61,7 +73,10 @@ public class BookDTO {
 
         @Override
         public Book convert(BookDTO bookDTO) {
-            return null;
+
+            Book book = new Book();
+            BeanUtils.copyProperties(bookDTO,book);
+            return book;
         }
     }
 }

@@ -1,0 +1,9 @@
+logging:
+  level:
+    root: debug
+    com.yuboz.springbootapi: debug
+  file: devlog/my.log
+  pattern:
+#    console: '%d{HH:mm:ss.SSS}'
+
+
